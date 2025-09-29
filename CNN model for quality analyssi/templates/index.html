@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetable Classifier</title>
+</head>
+<body>
+    <h2>Upload a Vegetable Image for Classification</h2>
+    
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const fileInput = document.getElementById("fileInput");
+            if (fileInput.files.length === 0) {
+                alert("Please select a file before submitting.");
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    {% if prediction %}
+        <h3>Predicted Class: {{ prediction }}</h3>
+        <img src="{{ image_path }}" alt="Uploaded Image" width="200">
+    {% endif %}
+</body>
+</html>
